@@ -1,0 +1,19 @@
+1-Importation des bibliothèques nécessaires: Le code utilise la bibliothèque numpy pour générer des tableaux aléatoires de données de traitement et pour stocker les individus de la population, ainsi que la bibliothèque random pour générer des nombres aléatoires.
+
+2-Définition des variables: Le code définit les variables jobs et machines qui représentent le nombre de travaux et de machines disponibles pour le OSP. Il génère également une matrice aléatoire processing_time qui contient le temps de traitement de chaque travail sur chaque machine.
+
+3-Initialisation de la population: Le code génère une population initiale de 100 individus aléatoires, chacun étant représenté par un tableau de longueur jobs*machines avec des valeurs aléatoires de 0 ou 1. Ces valeurs représentent si un travail est affecté ou non à une machine spécifique.
+
+4-Fonction de fitness: Le code définit une fonction fitness qui prend en entrée un individu et calcule le temps d'achèvement de chaque machine en utilisant les valeurs de la matrice processing_time et les valeurs de l'individu. La fonction de fitness retourne la valeur maximale de ces temps d'achèvement. Plus le temps d'achèvement est faible, meilleur est l'individu.
+
+5-Fonction de sélection: Le code définit une fonction selection qui prend en entrée la population et les valeurs de fitness de chaque individu. Elle sélectionne les deux individus ayant les meilleures valeurs de fitness et les retourne.
+
+6-Fonction de crossover: Le code définit une fonction crossover qui prend en entrée les deux parents sélectionnés précédemment. Il génère un point de croisement aléatoire et crée un enfant en combinant les valeurs des parents avant et après ce point de croisement.
+
+7-Fonction de mutation: Le code définit une fonction mutation qui prend en entrée l'enfant généré précédemment. Il génère un point de mutation aléatoire et inverse la valeur de cet emplacement dans l'enfant.
+
+8-Boucle principale: Le code utilise une boucle pour itérer sur 1000 générations. Pour chaque génération, il calcule les valeurs de fitness de chaque individu de la population, sélectionne les meilleurs parents, génère un enfant par croisement et effectue une mutation sur cet enfant. Ensuite, il remplace l'individu ayant la pire valeur de fitness dans la population par cet enfant. Cela permet de maintenir une certaine diversité dans la population tout en améliorant la qualité de la solution.
+
+9-Meilleur individu: A la fin de la boucle principale, le code définit les variables best_individual et best_fitness qui contiennent respectivement l'individu ayant la meilleure valeur de fitness dans la population et cette valeur de fitness.
+
+10-Affichage du résultat: Le code utilise la fonction print pour afficher le meilleur individu et sa valeur de fitness.
