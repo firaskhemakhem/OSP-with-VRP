@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 #from pyantcolony import AntColony
 
 # Number of jobs and machines
-jobs = 15
-machines = 5
+jobs = 3
+machines = 2
 
 # Processing time of each job on each machine
 processing_time = np.random.randint(1, 10, (jobs, machines))
@@ -16,8 +16,8 @@ population = np.random.randint(0, 2, (100, jobs*machines))
 # Fitness function
 def fitness(individual):
     completion_time = np.zeros(machines)
-    for job in range(jobs):
-        for machine in range(machines):
+    for job in range(1,jobs):
+        for machine in range(1,machines):
             if individual[job*machines + machine] == 1:
                 completion_time[machine] += processing_time[job][machine]
     return max(completion_time)
@@ -59,7 +59,7 @@ for generation in range(1000):
 # Best individual
 best_individual = population[np.argmin(fitnesses)]
 best_fitness = min(fitnesses)
-
+print(best_individual)
 # Function to plot Gantt chart
 def plot_gantt(best_individual, processing_time):
     completion_time = np.zeros(machines)
@@ -70,12 +70,13 @@ def plot_gantt(best_individual, processing_time):
                 schedule.append([job, machine, completion_time[machine], completion_time[machine]+processing_time[job][machine]])
                 completion_time[machine] += processing_time[job][machine]
     schedule.sort(key=lambda x: x[2])
-    plt.figure(figsize=(20, 100))
+    print(schedule)
+    plt.figure(figsize=(20, 110))
     for i in range(len(schedule)):
         plt.barh(schedule[i][1], schedule[i][3]-schedule[i][2], left=schedule[i][2], height=0.6, label='Job '+str(schedule[i][0]))
+        #plt.broken_barh([(schedule[i][2],schedule[i][2])],(schedule[i][1],1),facecolors='blue')
     plt.legend()
     plt.xlabel("Time")
     plt.ylabel("Machines")
     plt.show()
-
 plot_gantt(best_individual, processing_time)
